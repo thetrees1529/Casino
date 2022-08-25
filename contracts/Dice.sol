@@ -96,7 +96,7 @@ contract Dice is VRFConsumerBaseV2, Payments, Ownable {
     }
 
     function _getOdds(OddsInput memory oddsInput) private pure returns(Odds memory) {
-        require(oddsInput.outOf > 0 && oddsInput.chance > 0);
+        require(oddsInput.chance > 0 && oddsInput.outOf > oddsInput.chance, "Bad odds.");
         return Odds(oddsInput.chance, oddsInput.outOf);
     }
 
